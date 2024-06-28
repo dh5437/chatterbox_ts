@@ -7,7 +7,7 @@ interface RoomListProps {
   rooms: Data[];
 }
 
-const RoomList: React.FC<RoomListProps> = ({ rooms }) => {
+const RoomList: React.FC<RoomListProps> = ({ rooms, datas }) => {
   const navigate = useNavigate();
 
   return (
@@ -15,8 +15,14 @@ const RoomList: React.FC<RoomListProps> = ({ rooms }) => {
       {rooms.map((data) => (
         <div
           className="room"
+          key={data.id}
           onClick={() => {
-            navigate(`/:${data.roomname}`);
+            const chats = datas
+              ? datas.filter(
+                  (clickedData: Data) => clickedData.roomname === data.roomname
+                )
+              : [];
+            navigate(`/:${data.roomname}`, { state: { datas, chats } });
           }}
         >
           {data.roomname}
