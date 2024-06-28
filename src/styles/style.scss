@@ -22,9 +22,6 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* App.js start */
@@ -115,7 +112,7 @@ body {
 
 /* leftSidebar end */
 
-/* roomList.jsx start */
+/* roomList.tsx start */
 
 .roomList {
   width: 100%;
@@ -151,24 +148,24 @@ button {
   }
 }
 
-/* roomList.jsx end */
-
-/* room.jsx start */
-
 .room {
-  width: 100%;
+  width: 80%;
   height: 100px;
+  font-family: $font-stack;
+  font-size: 20px;
+  font-weight: 600;
   border: 1px solid black;
   background-color: #7aa2e3;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0%;
+  cursor: pointer;
 }
 
-/* room.jsx end */
+/* roomList.tsx end */
 
-/* chatList.jsx start */
+/* room.tsx start */
 
 .chatContainer {
   display: "flex";
@@ -220,9 +217,9 @@ button {
   padding: 5px;
 }
 
-/* chatList.jsx end */
+/* chatList.tsx end */
 
-/* chat.jsx end */
+/* chat.tsx end */
 
 .chatMessage {
   display: flex;
@@ -245,4 +242,4 @@ button {
   padding-top: 15px;
 }
 
-/* chat.jsx end */
+/* chat.tsx end */
