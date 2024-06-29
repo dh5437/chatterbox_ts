@@ -9,7 +9,7 @@ import RoomList from "./RoomList.tsx";
 export interface Data {
   id: string;
   username: string;
-  roomname: any;
+  roomname: string;
   text: string;
   date: string;
 }

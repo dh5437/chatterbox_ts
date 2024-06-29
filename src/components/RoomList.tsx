@@ -22,7 +22,7 @@ const RoomList: React.FC<RoomListProps> = ({ rooms, datas }) => {
                   (clickedData: Data) => clickedData.roomname === data.roomname
                 )
               : [];
-            navigate(`/:${data.roomname}`, { state: { datas, chats } });
+            navigate(`/${data.roomname}`, { state: { datas, chats } });
           }}
         >
           {data.roomname}
