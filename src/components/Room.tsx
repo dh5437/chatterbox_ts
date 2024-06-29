@@ -6,9 +6,14 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const Room: React.FC = () => {
-  const { roomname } = useParams<{ roomname: string }>();
+  let { roomname } = useParams<{ roomname: string }>();
+  let roomLength: number = roomname!.length;
+  let roomName = roomname!.slice(1, roomLength);
+
   const location = useLocation();
   const navigate = useNavigate();
+
+  console.log(roomName);
 
   const [text, setText] = useState<string>("");
   const [chats, setChats] = useState<Data[]>(location.state?.chats || []);
@@ -19,7 +24,7 @@ const Room: React.FC = () => {
     try {
       const response = await axios.get("https://www.yungooso.com/api/messages");
       const roomChats = response.data.filter(
-        (data: Data) => data.roomname === roomname
+        (data: Data) => data.roomname === roomName
       );
       setChats((prevChats) => {
         const existingIds = new Set(prevChats.map((chat) => chat.id));
@@ -37,7 +42,7 @@ const Room: React.FC = () => {
     refreshMessage();
     const interval = setInterval(refreshMessage, 1000);
     return () => clearInterval(interval);
-  }, [roomname]);
+  }, [roomName]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -48,8 +53,8 @@ const Room: React.FC = () => {
 
     const newMessages: Data = {
       id: uuidv4(),
-      username: "sliverstone",
-      roomname: roomname!,
+      username: "silverstone",
+      roomname: roomName,
       text: text,
       date: new Date().toISOString(),
     };
@@ -73,7 +78,7 @@ const Room: React.FC = () => {
         >
           arrow_back
         </span>
-        Room: {roomname}
+        Room: {roomName}
         <span className="material-symbols-outlined">menu</span>
       </div>
       <div className="chatList">
